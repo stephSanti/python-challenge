@@ -20,11 +20,31 @@ with open(file_path, 'r') as file:
             canidates[canidate] += 1
         else:
             canidates[canidate] = 1
-
-        #canidates.add(canidate)
-        ###
+print(" Election Results " )
+print('------------------------')
 print(f'Total Votes: {total_votes}')
-#print(f'List of Canidates: {canidates}')
+print('------------------------')
+election_winner = max(canidates, key = canidates.get) # Get Election Winner
+
 for canidate, votes in canidates.items():
     percent_vote = (votes / total_votes) * 100
-    print(f'{canidate}: {percent_vote:.2f}%')
+    print(f'{canidate}: {percent_vote:.2f}% ({votes})')
+print('------------------------')
+print(f'Winner: {election_winner}')
+print('------------------------')
+
+#Export to text
+with open('election_data.txt', 'w') as f:
+    f.write("Election Results\n")
+    f.write('------------------------\n')
+    f.write(f'Total Votes: {total_votes}\n')
+    f.write('------------------------\n')
+    election_winner = max(canidates, key = canidates.get) # Get Election Winner
+
+    for canidate, votes in canidates.items():
+        percent_vote = (votes / total_votes) * 100
+        f.write(f'{canidate}: {percent_vote:.2f}% ({votes})\n')
+        f.write('------------------------\n')
+
+    f.write(f'Winner: {election_winner}\n')
+    f.write('------------------------\n')
