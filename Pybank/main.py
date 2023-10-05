@@ -19,7 +19,7 @@ with open(file_path, 'r') as file:
         months += 1
         total += amount
         profit_losses = int(row[1])
-        month = str(row[0]) #pulls profit/losses value
+        month = str(row[0]) #locate month
 
         if prev_profit_losses is not None: #calculate change from previous row
             change = profit_losses - prev_profit_losses
@@ -47,3 +47,15 @@ print(f'Total amount: ${total:.2f}')
 print(f'Total Average: {average_change:.2f}')
 print(f'Greatest Increase in Profits: {max_increase_month} (${max_increase:.2f})')
 print(f'Greatest Decrease in Profits: {max_decrease_month}(${max_decrease:.2f})')
+
+#Export to text
+with open('financial_analysis.txt', 'w') as f:
+    f.write("Financial Analysis/n")
+    f.write("   /n")
+    f.write("---------------------------------------   ")
+    f.write("   /n")
+    f.write(f'Total Months: {months}')
+    f.write(f'Total amount: ${total:.2f}')
+    f.write(f'Total Average: {average_change:.2f}')
+    f.write(f'Greatest Increase in Profits: {max_increase_month} (${max_increase:.2f})')
+    f.write(f'Greatest Decrease in Profits: {max_decrease_month}(${max_decrease:.2f})')
